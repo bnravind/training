@@ -22,9 +22,6 @@ Valid Login
 Search Ravi
     User Searches and Check results     buddharaju
 
-Search robot
-    User Searches and Check results     Robot Framework
-
 *** Keywords ***
 Open Browser To Login Page
     Open Browser    ${LOGIN URL}    ${BROWSER}
