@@ -9,12 +9,8 @@ Library     OperatingSystem
 
 
 *** Variables ***
-${SERVER}         nd.spoors.in:9080/effort5-2016
 ${BROWSER}        Chrome
 ${DELAY}          0
-${ERROR URL}      http://${SERVER}/error.html
-${LOGIN URL}      http://${SERVER}/j_spring_security_check
-${WELCOME URL}    http://${SERVER}/web/customer/search/page/new?fill=true&
 ${empid}    31608
 ${WELCOME TITLE}    Spoors Effort
 
@@ -23,10 +19,16 @@ Load env
     ${TestUserName}=    Get Environment Variable    TEST_USERNAME
     ${TestUserEmail}=    Get Environment Variable    TEST_USEREMAIL
     ${TestUserPass}=    Get Environment Variable    TEST_PASSWORD
+    ${SERVER}=  Get Environment Variable    TEST_ENV
     Set Global Variable     ${TestUserName}
     Set Global Variable     ${TestUserEmail}
     Set Global Variable     ${TestUserPass}
-
+    Set Global Variable     ${SERVER}
+#    ${ERROR URL}      http://${SERVER}/error.html
+    Set Global Variable     ${LOGIN URL}    http://${SERVER}/j_spring_security_check
+    Set Global Variable     ${WELCOME URL}  http://${SERVER}/web/customer/search/page/new?fill=true&
+    Log     ${LOGIN URL}
+    Log     ${WELCOME URL}
 
 
 Valid Login
