@@ -5,42 +5,56 @@ Documentation     A resource file with reusable keywords and variables.
 ...               domain specific language. They utilize keywords provided
 ...               by the imported Selenium2Library.
 Library           Selenium2Library
+Library     OperatingSystem
+
 
 *** Variables ***
-${SERVER}         google.in
+${SERVER}         nd.spoors.in:9080/effort5-2016
 ${BROWSER}        Chrome
 ${DELAY}          0
-${VALID USER}     demo
-${VALID PASSWORD}    mode
-${LOGIN URL}      http://${SERVER}/
-${WELCOME URL}    http://${SERVER}/welcome.html
 ${ERROR URL}      http://${SERVER}/error.html
+${LOGIN URL}      http://${SERVER}/j_spring_security_check
+${WELCOME URL}    http://${SERVER}/web/customer/search/page/new?fill=true&
+${empid}    31608
+${WELCOME TITLE}    Spoors Effort
 
 *** Keywords ***
+Load env
+    ${TestUserName}=    Get Environment Variable    TEST_USERNAME
+    ${TestUserEmail}=    Get Environment Variable    TEST_USEREMAIL
+    ${TestUserPass}=    Get Environment Variable    TEST_PASSWORD
+    Set Global Variable     ${TestUserName}
+    Set Global Variable     ${TestUserEmail}
+    Set Global Variable     ${TestUserPass}
+
+
+
+Valid Login
+    Load env
+    Log     ${TestUserName}
+    Log     ${TestUserEmail}
+    Log     ${TestUserPass}
+    Open Browser To Login Page
+    Input Username    ${TestUserEmail}
+    Input Password    ${TestUserPass}
+    Wait Until Page Contains        Sign In
+    Submit Credentials
+    Wait Until Page Contains        ${TestUserName}
+
 Open Browser To Login Page
     Open Browser    ${LOGIN URL}    ${BROWSER}
-    Maximize Browser Window
-    Set Selenium Speed    ${DELAY}
-    Login Page Should Be Open
-
-Login Page Should Be Open
-    Title Should Be    Google
-
-Go To Login Page
-    Go To    ${LOGIN URL}
-    Login Page Should Be Open
 
 Input Username
     [Arguments]    ${username}
-    Input Text    username_field    ${username}
+    Input Text    j_username    ${username}
 
 Input Password
     [Arguments]    ${password}
-    Input Text    password_field    ${password}
+    Input Text    j_password    ${password}
 
 Submit Credentials
-    Click Button    login_button
+    Click Button    submit
 
 Welcome Page Should Be Open
-    Location Should Be    ${WELCOME URL}
-    Title Should Be    Welcome Page
+    Location Should Be    ${WELCOME URL}loginEmpName=${TestUserName}&loginEmpId=${empid}
+    Title Should Be     ${WELCOME TITLE}

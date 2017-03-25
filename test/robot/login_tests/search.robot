@@ -31,3 +31,4 @@ User Searches and Check results
     Input Text  id=lst-ib   ${key}
     Click Button    id=_fZl
     wait Until Page Contains    ${key}
+
