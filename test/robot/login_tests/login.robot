@@ -17,7 +17,7 @@ Check Route Plan
 
 Route Plan Value Test
     Wait Until Page Contains    diggi work1
-    Wait Until Page Contains    109     timeout=60s
+    Wait Until Page Contains    110     timeout=60s
     Wait Until Page Contains    280     timeout=60s
     Wait Until Page Contains    813     timeout=60s
     Wait Until Page Contains    24     timeout=60s
