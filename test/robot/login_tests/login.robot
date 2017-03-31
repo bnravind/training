@@ -21,7 +21,7 @@ Route Plan Value Test
     Wait Until Page Contains    280     timeout=60s
     Wait Until Page Contains    813     timeout=60s
     Wait Until Page Contains    24     timeout=60s
-    Element should Contain   xpath=//a[@id="emp_without_routeplans"]/span  109
+    Element should Contain   xpath=//a[@id="emp_without_routeplans"]/span  110
 
 IC Shifting Survey Test
     Wait Until Page Contains    1165     timeout=60s
